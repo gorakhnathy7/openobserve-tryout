@@ -1,0 +1,7 @@
+.DS_Store
+
+# Local OpenObserve runtime artifacts
+o2-self-hosted/
+
+# Maven build output
+springboot-openobserve-demo/target/

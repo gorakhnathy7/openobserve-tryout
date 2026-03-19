@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: springboot-openobserve-demo
+
+server:
+  port: 8080
+
+# OpenObserve OTLP Configuration
+# Replace these values with your actual OpenObserve Cloud credentials
+openobserve:
+  otlp:
+    # For OpenObserve Cloud: https://api.openobserve.ai
+    # For self-hosted: http://localhost:5081
+    endpoint: http://localhost:5081
+    # Format: "Basic <base64(email:token)>"
+    # Generate with: echo -n "user@email.com:your_token" | base64
+    auth-header: "Basic cm9vdEBleGFtcGxlLmNvbTpDb21wbGV4cGFzcyMxMjM="
+    organization: default
+
+# Actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  tracing:
+    sampling:
+      probability: 1.0   # Sample 100% of traces (use lower value in production)
+
+# Logging configuration
+logging:
+  level:
+    root: INFO
+    com.example.demo: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - traceId=%X{traceId} spanId=%X{spanId} - %msg%n"
