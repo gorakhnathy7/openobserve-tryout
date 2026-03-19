@@ -103,7 +103,7 @@ Whichever option you chose, OpenObserve is now running on two ports:
 
 Open http://localhost:5080 and log in with `root@example.com` / `Complexpass#123`.
 
-![OpenObserve dashboard home page after logging in, showing the Logs, Traces, Metrics and other navigation options in the sidebar](<Screenshot 2026-03-19 at 11.04.34 PM-1-1.png>)
+![OpenObserve dashboard home page after logging in, showing the Logs, Traces, Metrics and other navigation options in the sidebar](<screenshot-openobserve-home.png>)
 *OpenObserve running locally on port 5080 - the home dashboard after first login*
 
 
@@ -111,7 +111,7 @@ Open http://localhost:5080 and log in with `root@example.com` / `Complexpass#123
 
 In the OpenObserve UI, click **Data Sources** in the left sidebar, then go to **Recommended > Traces (OpenTelemetry)**. The OTLP gRPC section shows a ready-to-use config snippet with the `Authorization` header value already filled in. Copy that value - it's a Base64-encoded `email:password` string - and keep it handy for `application.yml` in Step 4.
 
-![OpenObserve Data Sources page showing Traces (OpenTelemetry) selected, with OTLP gRPC config displaying the Authorization header and organization fields](<Screenshot 2026-03-20 at 12.58.28 AM.png>)
+![OpenObserve Data Sources page showing Traces (OpenTelemetry) selected, with OTLP gRPC config displaying the Authorization header and organization fields](<screenshot-openobserve-datasources.png>)
 *OpenObserve local instance - Data Sources > Recommended > Traces (OpenTelemetry). Copy the Authorization value from the OTLP gRPC section into application.yml*
 
 ---
@@ -519,7 +519,7 @@ Check the console — you should see populated `traceId` and `spanId` values in 
 2026-03-19 23:12:24.516 [http-nio-8080-exec-1] INFO  c.e.demo.controller.OrderController - traceId=3c9271ea42e8dfd04009e0552f60cc39 spanId=255ebb948f91765e - Received request to fetch order: ORD-17455
 ```
 
-![Terminal showing Spring Boot console output with populated traceId and spanId on a live request log line](<Screenshot 2026-03-20 at 1.38.37 AM-1.png>)
+![Terminal showing Spring Boot console output with populated traceId and spanId on a live request log line](<screenshot-terminal-traceid.png>)
 *Terminal output after the first curl request - traceId and spanId are populated in every request-thread log line*
 
 If `traceId=` still shows up blank in request logs, the most likely issues are:
@@ -612,7 +612,7 @@ trace_id = 'your_trace_id_here'
 
 In this demo, search using the `trace_id` field exposed in OpenObserve's query editor. For the error path, searching by trace ID is more reliable than relying on a severity-only filter.
 
-![OpenObserve Logs view with a trace_id filter applied, showing all structured log records for a single request](<Screenshot 2026-03-20 at 1.53.10 AM-1.png>)
+![OpenObserve Logs view with a trace_id filter applied, showing all structured log records for a single request](<screenshot-logs-trace-filter.png>)
 *Logs view filtered by trace_id - every log line emitted during that request, with severity, body, and trace context fields visible*
 
 ---
@@ -662,9 +662,9 @@ Until now, logs and traces have been two separate things you look at independent
 
 That second direction is the one that changes how you debug. The trace tells you which request failed and where. The correlated logs tell you what your code was doing around that request, in sequence, under the same identifier.
 
-![Side-by-side view of OpenObserve Logs filtered by trace_id and the matching trace waterfall open in the Traces view](<Screenshot 2026-03-20 at 2.00.30 AM-1.png>)
+![Side-by-side view of OpenObserve Logs filtered by trace_id and the matching trace waterfall open in the Traces view](<screenshot-correlation-logs.png>)
 
-![Side-by-side view of OpenObserve Logs filtered by trace_id and the matching trace waterfall open in the Traces view](<Screenshot 2026-03-20 at 2.01.27 AM-1.png>)*Log-trace correlation in action - the same trace_id connects a log record in the Logs view to the full request waterfall in the Traces view*
+![Side-by-side view of OpenObserve Logs filtered by trace_id and the matching trace waterfall open in the Traces view](<screenshot-correlation-trace.png>)*Log-trace correlation in action - the same trace_id connects a log record in the Logs view to the full request waterfall in the Traces view*
 
 
 
